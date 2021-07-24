@@ -2,7 +2,7 @@ NAME	= push_swap
 BONUS	= checker
 
 CC		= clang
-CFLAGS	= -w -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
 RM		= /bin/rm -f
 SILENCE	= --no-print-directory
 

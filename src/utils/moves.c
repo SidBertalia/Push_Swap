@@ -4,16 +4,14 @@
 ** Esta função coloca o último elemento no topo da stack, descendo todos os
 ** outros uma posição.
 **
-** '**base'- Esta stack será sempre rotacionada.
-** '**optional'- Esta stack é opcional e não precisa ser rotacionada.
-** '*msg'- Mensagem a ser exibida no final da função. Mensagens possíveis:
-** 				"rra\n"	- Rotaciona reverso os elementos da 'stack_a'.
-** 				"rrb\n"	- Rotaciona reverso os elementos da 'stack_b'.
-** 				"rrr\n"	- Rotaciona reverso os elementos de ambas stacks.
+** '**base'	- Esta stack será sempre rotacionada.
+** '**aux'	- Esta stack é opcional e não precisa ser rotacionada.
+** '*msg'	- Mensagem a ser exibida no final da função. Mensagens possíveis:
+** 					"rra\n"	- Rotaciona reverso os elementos da 'stack_a'.
+** 					"rrb\n"	- Rotaciona reverso os elementos da 'stack_b'.
+** 					"rrr\n"	- Rotaciona reverso os elementos de ambas stacks.
 */
-void	reverse_rotate_stack(t_stack **base,
-			t_stack **optional,
-			char *msg)
+void	reverse_rotate_stack(t_stack **base, t_stack **aux, char *msg)
 {
 	int		data;
 	t_stack	*last_node;
@@ -22,12 +20,12 @@ void	reverse_rotate_stack(t_stack **base,
 	data = last_node->data;
 	ft_stack_remove(&last_node);
 	ft_stack_add_front(base, ft_stack_new(data));
-	if (optional)
+	if (aux)
 	{
-		last_node = ft_stack_last(*optional);
+		last_node = ft_stack_last(*aux);
 		data = last_node->data;
 		ft_stack_remove(&last_node);
-		ft_stack_add_front(optional, ft_stack_new(data));
+		ft_stack_add_front(aux, ft_stack_new(data));
 	}
 	ft_putstr_fd(msg, 1);
 }
@@ -37,24 +35,24 @@ void	reverse_rotate_stack(t_stack **base,
 ** outros uma posição.
 **
 ** '**base'	- Esta stack será sempre rotacionada.
-** '**optional'		- Esta stack é opcional e não precisa ser rotacionada.
+** '**aux'	- Esta stack é opcional e não precisa ser rotacionada.
 ** '*msg'	- Mensagem a ser exibida no final da função:
-**			"ra\n"	- Rotaciona os elementos da 'stack_a'.
-**			"rb\n"	- Rotaciona os elementos da 'stack_b'.
-**			"rr\n"	- Rotaciona os elementos de ambas stacks.
+**					"ra\n"	- Rotaciona os elementos da 'stack_a'.
+**					"rb\n"	- Rotaciona os elementos da 'stack_b'.
+**					"rr\n"	- Rotaciona os elementos de ambas stacks.
 */
-void	rotate_stack(t_stack **base, t_stack **optional, char *msg)
+void	rotate_stack(t_stack **base, t_stack **aux, char *msg)
 {
 	int	data;
 
 	data = ft_stack_first(*base)->data;
 	ft_stack_remove(base);
 	ft_stack_add_back(base, ft_stack_new(data));
-	if (optional)
+	if (aux)
 	{
-		data = ft_stack_first(*optional)->data;
-		ft_stack_remove(optional);
-		ft_stack_add_back(optional, ft_stack_new(data));
+		data = ft_stack_first(*aux)->data;
+		ft_stack_remove(aux);
+		ft_stack_add_back(aux, ft_stack_new(data));
 	}
 	ft_putstr_fd(msg, 1);
 }
@@ -66,19 +64,21 @@ void	rotate_stack(t_stack **base, t_stack **optional, char *msg)
 ** **base	- Troca os dois primeiros elementos desta stack. Esta stack
 ** sempre será trocada.
 **
-** **optional	- Troca os dois primeiros elementos desta stack. Esta stack
+** **aux	- Troca os dois primeiros elementos desta stack. Esta stack
 ** é opcional e não precisa ser trocada.
 **
 ** *msg	- Mensagem a ser exibida no final da função. Mensagens possíveis:
-** 			"sa\n"	- troca os dois primeiros elementos da 'stack_a'.
-** 			"sb\n:	- troca os dois primeiros elementos da 'stack_b'.
-** 			"ss\n"	- troca os dois primeiros elementos de ambas stacks.
+** 				"sa\n"	- troca os dois primeiros elementos da 'stack_a'.
+** 				"sb\n:	- troca os dois primeiros elementos da 'stack_b'.
+** 				"ss\n"	- troca os dois primeiros elementos de ambas stacks.
 */
-void	swap_stack(t_stack *base, t_stack *optional, char *msg)
+void	swap_stack(t_stack *base, t_stack *aux, char *msg)
 {
+	if (base == NULL)
+		return ;
 	ft_swap(&(base->data), &(base->next->data));
-	if (optional)
-		ft_swap(&(optional->data), &(optional->next->data));
+	if (aux)
+		ft_swap(&(aux->data), &(aux->next->data));
 	ft_putstr_fd(msg, 1);
 }
 

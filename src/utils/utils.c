@@ -19,7 +19,7 @@ char	**parse_string(int *argc, char **argv)
 }
 
 /*
-** Esta função recebe os argumentos de string do 'argv';
+** Esta função recebe os argumentos da string do 'argv';
 ** Converte para inteiros e adiciona de traz pra frente na stack_a.
 ** Para isso, os argumentos precisam ser apenas numéricos;
 ** não podem haver dois argumentos iguais, e os inteiros não podem ser

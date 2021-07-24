@@ -27,12 +27,12 @@ int	moves_to_top(t_stack *stack_a, t_stack *refs)
 }
 
 /*
-** Esta função seleciona o tipo de algoritmo de ordenacao com base no
+** Esta função seleciona o tipo de algoritmo de ordenação com base no
 ** tamanho da 'stack_a'.
 ** Se o tamanho da stack:
-** 		- é menos de 3: a função sort_small() é chamada.
-** 		- é entre 4 ou 19: a função sort_medium() é chamada.
-** 		- é mais de 20: a função sort_big() é chamada.
+** 		- menor que 3:		a função sort_small() é chamada.
+** 		- entre 4 ou 19:	a função sort_medium() é chamada.
+** 		- mais que 20:		a função sort_big() é chamada.
 */
 void	choose_algorithm(t_stack **stack_a, t_stack **stack_b)
 {
@@ -56,8 +56,19 @@ void	choose_algorithm(t_stack **stack_a, t_stack **stack_b)
 
 /*
 ** int argc		- número de argumentos de linha de comando.
-** char *argv	- arquivo executável + dígitos para preencher a pilha
-** e ser classificado.
+** char *argv	- arquivo executável + dados para preencher a pilha
+** e ser ordenado.
+** Se houver somente um parametro (./push_swap), encerra - 'exit(1)';
+** 'parse_string()' - prepara os argumentos para carregar na stack;
+** 'load_args()' - recebe os argumentos tratados e carrega na 'stack_a,
+** na sequencia inversa. Dessa forma o 1º inteiro recebido, estará no topo
+** da stack.
+** Ex: ARG="3 1 2"	=>	stack_a	|	stack_b
+**							3	|
+**							1	|
+**							2	|
+** Se a stack não estiver ordenada, chama 'choose_algorithm()' que decidirá
+** o modelo de ordenação com base no tamanho da 'stack_a'.
 */
 int	main(int argc, char **argv)
 {

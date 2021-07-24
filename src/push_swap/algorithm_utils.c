@@ -4,8 +4,8 @@
 ** Esta função pega a 'stack_a' e conta os números entre os dois primeiros
 ** elementos da stack 'refs'.
 **
-** A função count_index() retorna quantos elementos há entre os dois
-** primeiros elementos da 'refs' existentes na stack_a.
+** A função count_index() retorna quantos elementos há entre os dois primeiros
+** elementos da 'refs' na stack_a.
 */
 int	count_index(t_stack *stack_a, t_stack *refs)
 {
@@ -23,12 +23,12 @@ int	count_index(t_stack *stack_a, t_stack *refs)
 
 /*
 ** Esta função vai pegar os números medianos da 'stack_a' entre os dois
-** primeiros limites da stack 'refs' e adicioná-lo a 'refs'.//!Verificar traducao
+** primeiros limites da stack 'refs' e adicioná-los na 'refs'.
 **
 ** Começa criando uma cópia da 'stack_a' - 'duplicate';e ordena essa stack,
-** 'duplicate' será uma versão ordenada da 'stack_a'.
+** 'duplicate' será uma cópia ordenada da 'stack_a'.
 **
-** A função tentará encontrar o índice em 'duplicate' do primeiro elemento de
+** A função tentará encontrar o índice em 'duplicate' do primeiro elemento da
 ** 'refs' - min_idx; O mesmo acontece com 'max_idx' - o índice do segundo
 ** elemento de 'refs' em 'duplicate'.
 **
@@ -69,15 +69,15 @@ void	get_new_block(t_stack **refs, t_stack *stack, int flag)
 **
 ** EX:
 ** 	- ANTES
-** 		refs: {14, 25, 50, 100}
-** 		stack_a: [1, 13] ordenados
-** 				[14, 100] desordenados
-** 		stack_b: VAZIA
+** 			refs:		{25, 50, 75, 100}
+** 			stack_a:	[1, 24] ordenados
+** 						[25, 100] desordenados
+** 			stack_b:	VAZIA
 ** 	- DEPOIS
-** 		refs: {14, 25, 50, 100}
-** 		stack_a: [1, 13] ordenados
-** 				[25 , 100] desordenados
-** 		stack_b: [14, 25] desordenados
+** 			refs:		{25, 50, 75, 100}
+** 			stack_a:	[1, 24] ordenados
+** 						[51, 100] desordenados
+** 			stack_b:	[25, 50] desordenados
 */
 void	split_blocks(t_stack **stack_a, t_stack **stack_b, t_stack *refs)
 {
@@ -96,13 +96,13 @@ void	split_blocks(t_stack **stack_a, t_stack **stack_b, t_stack *refs)
 
 /*
 ** Esta função pega 'stack_b' e todos os seus números com valor acima do segundo
-** elemento de 'refs' são empurrados de volta para 'stack_a'
+** elemento de 'refs' e joga de volta para 'stack_a'
 ** 		Ex:
-** 			50 números aleatórios entre 1 e 50;
-** 			stack_a: [25, 50] desordenados
-** 			stack_b: [1, 25] desordenados
-** 			refs: {1, 13, 25, 50}
-** 		Todos os números maiores que 13 têm que voltar a stack_a.
+** 			50 números aleatórios entre 1 e 100;
+** 			stack_a: [50, 100] desordenados
+** 			stack_b: [1, 49] desordenados
+** 			refs: {1, 25, 50, 100}
+** 		Todos os números maiores que 25 têm que voltar a stack_a.
 */
 void	merge_max_back(t_stack **stack_a, t_stack **stack_b, t_stack *refs)
 {
@@ -126,7 +126,7 @@ void	merge_max_back(t_stack **stack_a, t_stack **stack_b, t_stack *refs)
 }
 
 /*
-** Mescla o resto de stack_b 'para' stack_a 'de forma ordenada.
+** Mescla o restante da stack_b 'para' stack_a 'de forma ordenada.
 **
 ** **stack_a	- onde os números voltarão ordenados.
 ** **stack_b	- onde serão ordenados e ao final ficará vazia.

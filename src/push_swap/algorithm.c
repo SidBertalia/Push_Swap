@@ -1,22 +1,20 @@
 #include "../../include/push_swap.h"
 
 /*
-** Para stack_a de tamanho inferior a 3.
+** Para 'stack_a' de até 3 inteiros.
 ** Apenas instruções: RRA, RA, SA.
 **
 ** if)		verifica se o segundo elemento de stack_a corresponde ao
-** 			valor máximo da pilha, e se o primeiro não é o
-** 			valor mínimo - Ex: 2 3 1
-** 			Para este caso, RRA.
+** 			valor máximo da stack, e se o primeiro não é o
+** 			valor mínimo - Ex: 2 3 1 - neste caso, RRA.
 **
 ** else if)	Verifica se o primeiro elemento de stack_a corresponde ao
-** 			valor mínimo da pilha, e se o segundo não for o
-** 			valor máximo - Ex: 3 1 2
-** 			Para este caso, RA.
+** 			valor mínimo da stack, e se o segundo não é o
+** 			valor máximo - Ex: 3 1 2 - neste caso, RA.
 **
 ** else)	Se não for nenhum dos casos acima, SA nos dois primeiros
 ** 			elementos da stack_a, para então ficar com um dos casos acima.
-** 			Ex: 3 2 1 - Neste caso trocamos os dois primeiros números com
+** 			Ex: 3 2 1 - Neste caso, trocamos os dois primeiros números com
 ** 			SA - 2 3 1 - depois RRA - 1 2 3.
 */
 void	sort_small(t_stack **stack_a)
@@ -38,18 +36,19 @@ void	sort_small(t_stack **stack_a)
 }
 
 /*
-** Para stack_a de tamanho entre 4 e 19.
-** Esse algoritmo é dividida em três etapas:
+** Para stack_a entre 4 e 19 inteiros.
+** Esse algoritmo é dividido em três etapas:
 **
-** 1º)	Pega as instruções para passar os dois menores números da
+** 1º)	Verifica as instruções para passar os menores números da
 ** 		stack_a para stack_b - por exemplo: stack_a é: 3 2 5 1 4
-** 		Passando os números 1 e 2 para stack_b, ficando na stack_a 3 5 4
+** 		Utilizando a função 'send_min_to_b', passa os números 1 e 2
+**		para stack_b, já ordenando com RRA, RA e PB, ficando na stack_a: 3 5 4
 **
-** 2º)	Uma vez que stack_a contém apenas três inteiros para classificar,
-** 		chamamos a função sort_small().
-** 		Seguindo o exemplo acima, stack_a seria agora: 3 4 5.
+** 2º)	Uma vez que stack_a contém apenas três inteiros para ordenar,
+** 		é chamada a função sort_small().
+** 		Seguindo o exemplo no comentário da função, a stack_a terá agora: 3 4 5.
 **
-** 3º)	Agora o programa precisa voltar os números da stack_b para stack_a.
+** 3º)	Agora o programa só precisa voltar os números da stack_b para stack_a.
 */
 void	sort_medium(t_stack **stack_a, t_stack **stack_b)
 {
@@ -61,29 +60,28 @@ void	sort_medium(t_stack **stack_a, t_stack **stack_b)
 }
 
 /*
-** Para stack_a de tamanho maior que 20.
-** Separei o algoritmo em duas fases diferentes:
-** a fase de dividir, e a fase de mesclagem.
+** Para stack_a maior que 20 inteiros.
+** Algoritmo dividido em duas etapas: divisão e mesclagem.
 **
-** Fase de divisão:
+** Etapa de divisão:
 ** Esta fase é focada em passar para stack_b, os números entre um certo bloco.
 ** As instruções usadas para esta parte são: "RA", "RRA" e "PB".
-** Esta fase termina quando todos os números do bloco estão na stack_b.
+** Esta etapa termina quando todos os números desse bloco estão na stack_b.
 **
 ** Ex:		100 números aleatórios de 1 a 100.
-** 			1º bloco: números de 1 a 50 na stack_b.
+** 			1º bloco: números de 1 a 49 na stack_b.
 ** 			2º bloco: números de 50 a 100 na stack_a.
 **
 ** Agora o programa decidirá entre:
-** 	- Fase de voltar a mesclar:
-** 		Esta fase ocorre se o tamanho da stack_b é muito grande para a fase de
-** 		classificar e mesclar. Então, o que acontecerá aqui é que a metade
-** 		dos valores da stack_b voltarão para stack_a (especificamente valores
-**		que são maiores que o valor mediano da stack_b).
-** 		Isso acontece ao mesmo tempo que tenta classificar o que é possível
+** 	- Etapa de voltar à mesclar:
+** 		Esta etapa ocorre se o tamanho da stack_b é muito grande para a etapa de
+** 		ordenar e mesclar. Então, o que acontecerá é que a metade dos valores
+** 		da stack_b voltarão para stack_a (especificamente valores que são
+** 		maiores que os valores medianos da stack_b).
+** 		Isso acontece ao mesmo tempo que tenta ordenar o que é possível
 **		enquanto volta pra stack_a.
-** 	- Fase de classificar e mesclar:
-** 		Esta fase ocorre se a stack_b estiver pronta para voltar pra stack_a.
+** 	- Etapa de ordenar e mesclar:
+** 		Esta etapa ocorre se a stack_b estiver pronta para voltar pra stack_a.
 */
 void	sort_big(t_stack **stack_a, t_stack **stack_b, t_stack **refs, int i)
 {
@@ -110,13 +108,14 @@ void	sort_big(t_stack **stack_a, t_stack **stack_b, t_stack **refs, int i)
 }
 
 /*
-** Esta é uma função auxiliar da merge_sorted(). Ela retornará o número
-** mínimo de stack_a que não está ordenado, como o novo limite.
+** Esta é uma função auxiliar da 'merge_sorted()'.
+** Ela retornará o número mínimo da stack_a que não está ordenado,
+** como o novo limite para 'refs'.
 ** 	Ex:
-** 		refs: {12, 25, 50, 100}
-** 		stack_a: [1, 12] ordenado
-** 				[12, 100] desordenado
-** 		new refs: {13, 25, 50, 100}
+** 		refs: 		{12, 25, 50, 100}
+** 		stack_a: 	[1, 12] ordenado
+** 					[12, 100] desordenado
+** 		new refs: 	{13, 25, 50, 100}
 */
 int	get_next_min(t_stack *stack_a, t_stack **refs)
 {
@@ -140,8 +139,8 @@ int	get_next_min(t_stack *stack_a, t_stack **refs)
 }
 
 /*
-** Rotaciona stack_a até que os números ordenados sejam encontrados na parte
-** inferior da pilha ordenada em ordem decrescente.
+** Rotaciona stack_a até que os números encontrados sejam ordenados na parte
+** inferior da 'stack_a' em ordem decrescente.
 */
 void	rotate_stack_to_sort(t_stack **stack_a, t_stack *refs)
 {

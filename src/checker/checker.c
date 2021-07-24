@@ -2,7 +2,7 @@
 #include "../../include/push_swap.h"
 
 /*
-** This function ends the program either if successful or if Error.
+** Termina o programa se bem sucedido ou se Error.
 **
 ** flag:
 ** 		0 - Caso o programa termine com Error.
