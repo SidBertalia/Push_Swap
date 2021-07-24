@@ -23,4 +23,5 @@ void	ft_stack_remove(t_stack **stack)
 	else
 		*stack = temporary->next;
 	free(temporary);
+	temporary = NULL;
 }

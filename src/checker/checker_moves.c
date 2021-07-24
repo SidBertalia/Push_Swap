@@ -1,4 +1,4 @@
-#include "../../include/push_swap.h"
+#include "../../include/checker.h"
 
 /*
 ** Esta função coloca o último elemento no topo da stack, descendo todos os
@@ -16,12 +16,18 @@ void	reverse_rotate_stack(t_stack **base, t_stack **aux, char *msg)
 	int		data;
 	t_stack	*last_node;
 
+	if (!(*base))
+		return ;
 	last_node = ft_stack_last(*base);
 	data = last_node->data;
 	ft_stack_remove(&last_node);
 	ft_stack_add_front(base, ft_stack_new(data));
+	if (!(*base) && !(*aux))
+		return ;
 	if (aux)
 	{
+		if (!(*aux))
+			return ;
 		last_node = ft_stack_last(*aux);
 		data = last_node->data;
 		ft_stack_remove(&last_node);
@@ -45,11 +51,17 @@ void	rotate_stack(t_stack **base, t_stack **aux, char *msg)
 {
 	int	data;
 
+	if (!(*base))
+		return ;
 	data = ft_stack_first(*base)->data;
 	ft_stack_remove(base);
 	ft_stack_add_back(base, ft_stack_new(data));
+	if (!(*base) && !(*aux))
+		return ;
 	if (aux)
 	{
+		if (!(*aux))
+		return ;
 		data = ft_stack_first(*aux)->data;
 		ft_stack_remove(aux);
 		ft_stack_add_back(aux, ft_stack_new(data));
@@ -74,7 +86,11 @@ void	rotate_stack(t_stack **base, t_stack **aux, char *msg)
 */
 void	swap_stack(t_stack *base, t_stack *aux, char *msg)
 {
+	if (!(base))
+		return ;
 	ft_swap(&(base->data), &(base->next->data));
+	if (!(aux))
+		return ;
 	if (aux)
 		ft_swap(&(aux->data), &(aux->next->data));
 	ft_putstr_fd(msg, 1);

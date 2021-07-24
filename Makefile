@@ -13,8 +13,8 @@ CH_PATH	=	src/checker/
 PS_SRCS	=	$(PS_PATH)push_swap.c $(PS_PATH)algorithm.c $(PS_PATH)algorithm_utils.c \
 			$(UT_PATH)utils.c $(UT_PATH)moves.c
 
-CH_SRCS =	$(CH_PATH)checker.c \
-			$(UT_PATH)utils.c $(UT_PATH)moves.c
+CH_SRCS =	$(CH_PATH)checker.c $(CH_PATH)checker_moves.c\
+			$(UT_PATH)utils.c 
 
 PS_OBJS	=	$(PS_SRCS:.c=.o)
 CH_OBJS	=	$(CH_SRCS:.c=.o)
@@ -34,7 +34,7 @@ all:		$(NAME)
 
 $(NAME):	$(PS_OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) -o $(NAME) $(PS_OBJS) -I $(LIBFT_PATH) $(LIBFT_FLAGS)
-	@echo "\npush_swap [OK]\n"
+	@echo "push_swap [OK]\n"
 
 $(LIBFT):
 	@make -C $(LIBFT_PATH) $(SILENCE)
@@ -43,7 +43,7 @@ bonus: $(BONUS)
 
 $(BONUS): $(CH_OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) -o $(BONUS) $(CH_OBJS) -I $(LIBFT_PATH) $(LIBFT_FLAGS)
-	@echo "\nchecker [OK]\n"
+	@echo "checker [OK]\n"
 
 clean:
 	@make -C $(LIBFT_PATH) clean $(SILENCE)

@@ -1,5 +1,4 @@
 #include "../../include/checker.h"
-#include "../../include/push_swap.h"
 
 /*
 ** Termina o programa se bem sucedido ou se Error.
