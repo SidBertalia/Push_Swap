@@ -16,6 +16,8 @@ void	reverse_rotate_stack(t_stack **base, t_stack **aux, char *msg)
 	int		data;
 	t_stack	*last_node;
 
+	if (!(*base) || (!(*aux)))
+		return ;
 	last_node = ft_stack_last(*base);
 	data = last_node->data;
 	ft_stack_remove(&last_node);
@@ -45,6 +47,8 @@ void	rotate_stack(t_stack **base, t_stack **aux, char *msg)
 {
 	int	data;
 
+	if (!(*base) || (!(*aux)))
+		return ;
 	data = ft_stack_first(*base)->data;
 	ft_stack_remove(base);
 	ft_stack_add_back(base, ft_stack_new(data));
