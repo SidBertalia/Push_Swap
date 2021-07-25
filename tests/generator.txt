@@ -1,0 +1,18 @@
+Gerador de números aleatórios.
+
+`ruby -e "puts (-200..200).to_a.shuffle.join(' ')"`
+
+Modelos:
+
+5 números		ARG="`ruby -e "puts (1..5).to_a.shuffle.join(' ')"`"; ./push_swap $ARG | wc -l
+100 números		ARG="`ruby -e "puts (-49..50).to_a.shuffle.join(' ')"`"; ./push_swap $ARG | wc -l
+500 números		ARG="`ruby -e "puts (-249..250).to_a.shuffle.join(' ')"`"; ./push_swap $ARG | wc -l
+
+ARG="`ruby -e "puts (1..5).to_a.shuffle.join(' ')"`"; ./push_swap $ARG | ./checker $ARG
+
+LINKS UTEIS:
+
+Teste da Lais					git clone https://github.com/laisarena/push_swap_tester.git
+Visualizador o-reo(python)		git clone https://github.com/o-reo/push_swap_visualizer.git
+
+Obs: Os testes checker_linux/Mac devem ser adicionados a raiz da pasta.
