@@ -53,17 +53,17 @@ void	load_args(char **argv, t_stack **stack_a)
 ** Termina o programa, seja ele bem sucedido ou em caso de erro.
 **
 ** Free na stack_a e stack_b se necessário.
-** int status	->	status do programa
+** int flag	->	flag do programa
 ** 				->	0 - FAILURE - encerra o programa com "Error\n"
 ** 				->	1 -	SUCCESS - encerra o programa sem problemas.
 */
-void	exit_push_swap(t_stack *stack_a, t_stack *stack_b, int status)
+void	exit_push_swap(t_stack *stack_a, t_stack *stack_b, int flag)
 {
 	if (stack_a)
 		ft_stack_clear(&stack_a);
 	if (stack_b)
 		ft_stack_clear(&stack_b);
-	if (!status)
+	if (!flag)
 	{
 		ft_putstr_fd("Error\n", 2);
 		exit(EXIT_FAILURE);
