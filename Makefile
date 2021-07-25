@@ -29,25 +29,56 @@ all:		$(NAME)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "  Creating object files..........................\033[32m[DONE]\033[0m"
+	@sleep 1
 
 $(NAME):	$(PS_OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) -o $(NAME) $(PS_OBJS) -I $(LIBFT_PATH) $(LIBFT_FLAGS)
-	@echo "push_swap [OK]\n"
+	@echo "\033[32m   ____  _   _ ____  _   _   ______        ___    ____  \033[0m"
+	@sleep 1
+	@echo "\033[32m  |  _ \| | | / ___|| | | | / ___\ \      / / \  |  _ \ \033[0m"
+	@sleep 1
+	@echo "\033[32m  | |_) | | | \___ \| |_| | \___  \\ \ /\ / / _ \ | |_) |\033[0m"
+	@sleep 1
+	@echo "\033[32m  |  __/| |_| |___) |  _  |  ___) |\ V  V / ___ \|  __/ \033[0m"
+	@sleep 1
+	@echo "\033[32m  |_|    \___/|____/|_| |_| |____/  \_/\_/_/   \_\_|    \033[0m"
+	@sleep 1
+	@echo "\033[35m  =====================================================\033[0m"
+	@echo "  push_swap......................................\033[32m[DONE]\033[0m\n"
 
 $(LIBFT):
+	@echo "  Compiling library.......................\033[32m[\033[34mPLEASE WAIT\033[32m]\033[0m"
 	@make -C $(LIBFT_PATH) $(SILENCE)
+	@echo "  Library........................................\033[32m[DONE]\033[0m"
+	@sleep 1
+	@echo "  Making awsome things...........................\033[32m[DONE]\033[0m\n"
+	@sleep 1
 
 bonus: $(BONUS)
 
 $(BONUS): $(CH_OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) -o $(BONUS) $(CH_OBJS) -I $(LIBFT_PATH) $(LIBFT_FLAGS)
-	@echo "checker [OK]\n"
+	@echo "\033[31m 	   ____ _   _ _____ ____ _  _______ ____  \033[0m"
+	@sleep 1
+	@echo "\033[31m  	 /  ___| | | | ____/ ___| |/ / ____|  _ \ \033[0m"
+	@sleep 1
+	@echo "\033[31m 	 | |   | |_| |  _|| |   | ' /|  _| | |_) |\033[0m"
+	@sleep 1
+	@echo "\033[31m 	 | |___|  _  | |__| |___| . \| |___|  _ < \033[0m"
+	@sleep 1
+	@echo "\033[31m 	  \____|_| |_|_____\____|_|\_\_____|_| \_\\033[0m"
+	@sleep 1
+	@echo "\033[35m  =====================================================\033[0m"
+	@echo "  checker........................................\033[32m[DONE]\033[0m\n"
 
 clean:
+	@echo "  Cleaning objects...............................\033[32m[DONE]\033[0m"
 	@make -C $(LIBFT_PATH) clean $(SILENCE)
 	@$(RM) $(PS_OBJS) $(CH_OBJS)
 
 fclean:		clean
+	@echo "  Deleting Application...........................\033[32m[DONE]\033[0m\n"
 	@$(RM) $(NAME) $(BONUS)
 	@make -C $(LIBFT_PATH) fclean $(SILENCE)
 
