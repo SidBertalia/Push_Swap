@@ -1,4 +1,5 @@
 #include "libft.h"
+#include "ft_stack.h"
 
 /*
 ** This function adds an element to a stack. 

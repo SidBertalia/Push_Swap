@@ -20,6 +20,8 @@ void	reverse_rotate_stack(t_stack **base, t_stack **aux, char *msg)
 		return ;
 	last_node = ft_stack_last(*base);
 	data = last_node->data;
+	if (ft_stack_size(*base) == 1)
+			return ;
 	ft_stack_remove(&last_node);
 	ft_stack_add_front(base, ft_stack_new(data));
 	if (!(*base) && !(*aux))
@@ -30,6 +32,8 @@ void	reverse_rotate_stack(t_stack **base, t_stack **aux, char *msg)
 			return ;
 		last_node = ft_stack_last(*aux);
 		data = last_node->data;
+		if (ft_stack_size(*aux) == 1)
+			return ;
 		ft_stack_remove(&last_node);
 		ft_stack_add_front(aux, ft_stack_new(data));
 	}
@@ -54,6 +58,8 @@ void	rotate_stack(t_stack **base, t_stack **aux, char *msg)
 	if (!(*base))
 		return ;
 	data = ft_stack_first(*base)->data;
+	if (ft_stack_size(*base) == 1)
+			return ;
 	ft_stack_remove(base);
 	ft_stack_add_back(base, ft_stack_new(data));
 	if (!(*base) && !(*aux))
@@ -63,6 +69,8 @@ void	rotate_stack(t_stack **base, t_stack **aux, char *msg)
 		if (!(*aux))
 		return ;
 		data = ft_stack_first(*aux)->data;
+		if (ft_stack_size(*aux) == 1)
+			return ;
 		ft_stack_remove(aux);
 		ft_stack_add_back(aux, ft_stack_new(data));
 	}

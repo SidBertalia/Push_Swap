@@ -1,4 +1,5 @@
 #include "libft.h"
+#include "ft_stack.h"
 
 /*
 ** The ft_stack_remove() function takes as a parameter an element and frees the

@@ -1,4 +1,5 @@
 #include "libft.h"
+#include "ft_stack.h"
 
 /*
 ** This function creates a new element of a stack.
@@ -16,9 +17,12 @@ t_stack	*ft_stack_new(int data)
 {
 	t_stack	*stack;
 
-	stack = (t_stack *)malloc(sizeof(t_stack) * 1);
+	stack = (t_stack *)calloc(1, sizeof(t_stack));
 	if (!stack)
+	{
+		free(stack);
 		return (NULL);
+	}
 	stack->data = data;
 	stack->next = NULL;
 	stack->previous = NULL;
